@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Converter</title>
+</head> 
+<body>
+    <section>
+        <h1>Конвертер валют</h1>
+        <div id="relevant">
+        <!--По створеному шаблону автоматично заповнити даний клас даними-->
+            <div class="relevant-valute USD">
+                <h2>USD</h2>
+                <h3 data-value="USD">--*--</h3>
+            </div>
+            <div class="relevant-valute EUR">
+                <h2>EUR</h2>
+                <h3 data-value="EUR">--*--</h3>
+            </div>
+            <div class="relevant-valute RUB">
+                <h2>RUB</h2>
+                <h3 data-value="RUB">--*--</h3>
+            </div>
+        </div>
+        <div id="convert">
+            <div class="select">
+                <div id="currency-selection">
+                    <label for="name">Віддаю:</label>
+                    <!-- По створеному шаблону автоматично заповнити даний випадаючого списку-->
+                    <select disabled class="form-control">
+                        <!-- Автоматична підстановка значення в середину "option" -->
+                        <option value="UAH" selected>UAH - Гривня</option>
+                    </select>
+                </div>
+                <div id="currency-section">
+                    <label for="name">Отримаю:</label>
+                    <select id="select" class="form-control" id="select">
+                        <!-- Автоматична підстановка значення в середину "option" -->
+                        <option value="USD">USD — Долар</option>
+                        <option value="EUR">EUR — Євро</option>
+                        <option value="RUB">RUB — Рубль</option>
+                    </select>
+                </div>
+            </div>    
+            <div class="input-get-value">
+                <input type="number" class="getValue " id="input" autofocus>
+                <input type="number" class="setValue" id="result">
+            </div>
+        </div>
+    </section>
+    <footer>
+        <h3>Create in 2021 ©</h3>
+    </footer>
+		<script src="./script.js"></script>
+    
+</body>
+</html>
