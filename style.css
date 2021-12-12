@@ -13,9 +13,14 @@ body {
 section {
   display: flex;
   flex-direction: column;
-  padding-left: 34%;
-  padding-right: 34%;
+  
+  padding-left: 30%;
+  padding-right: 30%;
   padding-top: 40px;
+}
+section > h3 {
+  text-align: center;
+  padding-top: 20px;
 }
 h1 {
   font-family: 'Fira Sans';
@@ -39,38 +44,22 @@ label{
 #relevant {
   display: flex;
   justify-content: space-around;
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-.relevant-valute {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.relevant-valute h3 {
-  padding-top: 10px;
-}
-#convert {
-  display: flex;
-  flex-direction: column;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
 }
 .select {
   display: flex;
-  justify-content: space-between;
-  padding-bottom: 10px;
+    align-items: center;
+    justify-content: space-around;
 }
-.input-get-value {
-  display: flex;
-  justify-content: space-between;
+.container-give, .container-get {
+  display: grid;
+  padding: 20px;
 }
-.input-get-value input {
-  width: 180px;
-  justify-content: space-around;
-}
-input {
+input, select {
   border-radius: 5px;
+  margin: 2px;
   border-color: rgb(209, 216, 223);
 }
 footer{
@@ -79,4 +68,23 @@ footer{
   right: 20px;
   color: rgb(139, 139, 139);
   font-size: 12px;
+}
+.up{
+  color: green;
+}
+.down{
+  color: brown;
+}
+
+@media only screen and (max-width: 600px) {
+  .select{
+    flex-direction: column;
+  }
+  section{
+    padding-left: 10%;
+    padding-right: 10%;
+  } 
+  .container-give, .container-get {
+    padding: 5px;
+  }
 }

@@ -9,8 +9,8 @@
 <body>
     <section>
         <h1>Конвертер валют</h1>
+        <h3>Актуальний курс на <span currency="today"></span></h3>
         <div id="relevant">
-        <!--По створеному шаблону автоматично заповнити даний клас даними-->
             <div class="relevant-valute USD">
                 <h2>USD</h2>
                 <h3 data-value="USD">--*--</h3>
@@ -19,35 +19,34 @@
                 <h2>EUR</h2>
                 <h3 data-value="EUR">--*--</h3>
             </div>
-            <div class="relevant-valute RUB">
-                <h2>RUB</h2>
-                <h3 data-value="RUB">--*--</h3>
+            <div class="relevant-valute GBP">
+                <h2>GBP</h2>
+                <h3 data-value="GBP">--*--</h3>
             </div>
         </div>
         <div id="convert">
             <div class="select">
-                <div id="currency-selection">
-                    <label for="name">Віддаю:</label>
-                    <!-- По створеному шаблону автоматично заповнити даний випадаючого списку-->
-                    <select disabled class="form-control">
-                        <!-- Автоматична підстановка значення в середину "option" -->
-                        <option value="UAH" selected>UAH - Гривня</option>
-                    </select>
-                </div>
-                <div id="currency-section">
-                    <label for="name">Отримаю:</label>
-                    <select id="select" class="form-control" id="select">
-                        <!-- Автоматична підстановка значення в середину "option" -->
-                        <option value="USD">USD — Долар</option>
-                        <option value="EUR">EUR — Євро</option>
-                        <option value="RUB">RUB — Рубль</option>
-                    </select>
-                </div>
+               <div class="container-give">
+                    <div id="currency-selection">
+                        <label for="name">Віддаю:</label>
+                        <select id="select-input" class="give">
+                            <option value="UAH" selected>UAH - Гривня</option>
+                        </select>
+                    </div>
+                    <input type="number" class="getValue " id="input" autofocus>
+               </div>
+               <div class="container-get">
+                    <div id="currency-section">
+                        <label for="name">Отримаю:</label>
+                        <select id="select-result" class="get">
+                            <option value="UAH" selected>UAH - Гривня</option>
+                        </select>
+                    </div>
+                    <input type="number" class="setValue" id="result">
+               </div>
             </div>    
-            <div class="input-get-value">
-                <input type="number" class="getValue " id="input" autofocus>
-                <input type="number" class="setValue" id="result">
-            </div>
+            <!-- <div class="input-get-value">
+            </div> -->
         </div>
     </section>
     <footer>
