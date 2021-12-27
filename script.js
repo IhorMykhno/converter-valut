@@ -6,7 +6,6 @@ const result = document.querySelector('#result')
 const selectInput = document.querySelector('#select-input')
 const select  = document.querySelector('#select-result')
 const todayDay = document.querySelector('[currency="today"]')
-
 getCurrencies();
 
 async function getCurrencies(){
@@ -18,42 +17,48 @@ async function getCurrencies(){
     });
     
     addTodayDate();
-    printTotalCurrency(rates);
+    getTotalCurrency(rates);
     addCurrencyToSelect(currency);
     converValue(currency)
 } 
-
 function addTodayDate(){
     let date = new Date();
     todayDay.append(date.toLocaleDateString("ru-RU"))
 }
+async function getTotalCurrency() {
+    
+    Promise 
+    .all([
+        fetch('https://api.privatbank.ua/p24api/exchange_rates?json&date=27.12.2021').then(response => response.json()),
+        fetch('https://api.privatbank.ua/p24api/exchange_rates?json&date=26.12.2021').then(response => response.json()),
+    ])
+    .then((value) => printTotalCurrency(value))
+}    
 async function printTotalCurrency(rates){
-    // Не працюючий функціонал потрібно переробить.
-    // Використовується основа руб тому і дані пирводяться відносно нього
-    const valutes = {};
-    const responce = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
-    const res = await responce.json();
-
-    valutes.USD = res.Valute.USD;
-    valutes.EUR = res.Valute.EUR;
-    valutes.GBP = res.Valute.GBP;
+    let todayRate = {};
+    let yesterdayRate = {}; 
+    
+    todayRate.USD = await rates[0].exchangeRate.filter(rate => rate.currency == "USD");
+    todayRate.EUR = await rates[0].exchangeRate.filter(rate => rate.currency == "EUR");
+    todayRate.GBP = await rates[0].exchangeRate.filter(rate => rate.currency == "GBP");
+    yesterdayRate.USD = await rates[1].exchangeRate.filter(rate => rate.currency == "USD");
+    yesterdayRate.EUR = await rates[1].exchangeRate.filter(rate => rate.currency == "EUR");
+    yesterdayRate.GBP = await rates[1].exchangeRate.filter(rate => rate.currency == "GBP");
 
     const elementUSD = document.querySelector('[data-value="USD"]')
     const elementEUR = document.querySelector('[data-value="EUR"]')
     const elementGBP = document.querySelector('[data-value="GBP"]')
-    
-    elementUSD.textContent = valutes.USD.Value.toFixed(2);
-    elementUSD.appendChild(isUp(valutes.USD));
-    
-    elementEUR.textContent = valutes.EUR.Value.toFixed(2);
-    elementEUR.appendChild(isUp(valutes.EUR));
 
-    elementGBP.textContent = valutes.GBP.Value.toFixed(2);
-    elementGBP.appendChild(isUp(valutes.GBP));
+    elementUSD.textContent = todayRate.USD[0].saleRate.toFixed(2);
+    elementUSD.appendChild(isUp(yesterdayRate.USD[0].saleRate, todayRate.USD[0].saleRate));
+    elementEUR.textContent = todayRate.EUR[0].saleRate.toFixed(2);
+    elementEUR.appendChild(isUp(yesterdayRate.EUR[0].saleRate, todayRate.EUR[0].saleRate));
+    elementGBP.textContent = todayRate.GBP[0].saleRate.toFixed(2);
+    elementGBP.appendChild(isUp(yesterdayRate.GBP[0].saleRate, todayRate.GBP[0].saleRate));
 }
-function isUp(valute){
+function isUp(previous, current){
     let span;
-    if(valute.Value < valute.Previous){
+    if(current < previous){
         span = document.createElement('span');
         span.textContent = '▼';    
         span.className =  'down';
@@ -66,8 +71,7 @@ function isUp(valute){
     return span;
 }
 function addCurrencyToSelect(currency){
-    console.log(currency);
-    console.log(currency.sort((a, b) => a.cc > b.cc ? 1 : -1));
+    currency.sort((a, b) => a.cc > b.cc ? 1 : -1);
     currency.forEach(c => {
         let option = document.createElement('option');
         option.value = c.cc
