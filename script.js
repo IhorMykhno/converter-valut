@@ -28,6 +28,8 @@ function addTodayDate(){
     todayDay.append(date.toLocaleDateString("ru-RU"))
 }
 async function printTotalCurrency(rates){
+    // Не працюючий функціонал потрібно переробить.
+    // Використовується основа руб тому і дані пирводяться відносно нього
     const valutes = {};
     const responce = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
     const res = await responce.json();
@@ -64,6 +66,8 @@ function isUp(valute){
     return span;
 }
 function addCurrencyToSelect(currency){
+    console.log(currency);
+    console.log(currency.sort((a, b) => a.cc > b.cc ? 1 : -1));
     currency.forEach(c => {
         let option = document.createElement('option');
         option.value = c.cc
@@ -97,4 +101,9 @@ function converValue(){
         else        
             result.value = (parseFloat(input.value) / rates[select.value].rate).toFixed(2)
     }
+}
+
+function changeValue(){
+    console.log(selectInput);
+    console.log(select);
 }
