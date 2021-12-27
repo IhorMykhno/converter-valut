@@ -4,81 +4,56 @@
   padding: 0;
   margin: 0;
 }
-body {
-  margin: 0;
-  padding: 0;
-  color: rgb(46, 46, 46);
-  background-color: rgba(228, 228, 228, 0.199);
-}
-section {
-  display: flex;
-  flex-direction: column;
-  
-  padding-left: 30%;
-  padding-right: 30%;
-  padding-top: 40px;
-}
-section > h3 {
-  text-align: center;
-  padding-top: 20px;
-}
 h1 {
   font-family: 'Fira Sans';
   font-weight: 700;
   font-size: 28px;
   text-align: center;
 }
-h2 {
-  font-family: 'Fira Sans';
-  font-weight: 500;
-}
-h3{
-  font-family: 'Fira Sans';
-  font-weight: 400;
-}
-label{
-  font-family: 'Fira Sans';
-  font-weight: 400;
 
-}
-#relevant {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-}
-.select {
-  display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-.container-give, .container-get {
-  display: grid;
-  padding: 20px;
-}
-input, select {
-  border-radius: 5px;
-  margin: 2px;
-  border-color: rgb(209, 216, 223);
-}
-footer{
+footer {
   position: absolute;
   bottom: 20px;
   right: 20px;
   color: rgb(139, 139, 139);
   font-size: 12px;
 }
-.up{
+.up {
   color: green;
 }
-.down{
+.down {
   color: brown;
 }
-#change-btn{
-  width: 30px ;
+
+.courses {
+  display: flex;
+  margin-bottom: 15px;
 }
-@media only screen and (max-width: 600px) {
+
+.courses > *:first-child {
+  margin-left: 0;
+}
+
+.courses > *:last-child {
+  margin-right: 0;
+}
+
+.courses > * {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.course-item {
+}
+.course-item-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.course-item-value {
+  font-size: 32px;
+  font-weight: 300;
+}
+/* @media only screen and (max-width: 600px) {
   .select{
     flex-direction: column;
   }
@@ -89,4 +64,4 @@ footer{
   .container-give, .container-get {
     padding: 5px;
   }
-}
+} */

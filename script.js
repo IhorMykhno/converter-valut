@@ -9,8 +9,8 @@ const todayDay = document.querySelector('[currency="today"]')
 getCurrencies();
 
 async function getCurrencies(){
-    const responce = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
-    const data = await responce.json()
+    const response = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
+    const data = await response.json()
     const currency = await data;
     currency.forEach(r => {
         rates[r.cc] = {title: r.txt, rate: r.rate};
@@ -19,7 +19,7 @@ async function getCurrencies(){
     addTodayDate();
     getTotalCurrency(rates);
     addCurrencyToSelect(currency);
-    converValue(currency)
+    convertValue(currency)
 } 
 function addTodayDate(){
     let date = new Date();
@@ -85,11 +85,11 @@ function addCurrencyToSelect(currency){
         selectInput.appendChild(option);
     })   
 }
-input.oninput = converValue;
-select.oninput = converValue;
-selectInput.oninput = converValue;
+input.oninput = convertValue;
+select.oninput = convertValue;
+selectInput.oninput = convertValue;
 
-function converValue(){  
+function convertValue(){  
     if(selectInput.value !== 'UAH'){
         if(select.value === 'UAH'){
             result.value = (parseFloat(input.value) * rates[selectInput.value].rate).toFixed(2)
